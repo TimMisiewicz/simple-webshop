@@ -1,12 +1,13 @@
 package com.hsleiden.api.models;
 
-import com.hsleiden.api.enums.ERole;
-import org.springframework.data.annotation.Id;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Entity
@@ -15,27 +16,35 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "username"),
         })
 public class User {
-    @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(length = 36, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Type(type = "pg-uuid")
+    private UUID id;
 
     private String username;
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
-    }
+
 
     public User(String username, String password) {
+        this.id = UUID.randomUUID();
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
+
     }
 
     public String getUsername() {
@@ -62,11 +71,12 @@ public class User {
         this.roles = roles;
     }
 
-    public void setId(Long id) {
+
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 }

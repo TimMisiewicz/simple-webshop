@@ -1,15 +1,24 @@
 package com.hsleiden.api.models;
 
 import com.hsleiden.api.enums.ERole;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "roles")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(length = 36, nullable = false, columnDefinition = "VARCHAR(36)")
+    @Type(type = "pg-uuid")
+    private UUID id;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
@@ -23,11 +32,11 @@ public class Role {
         this.name = name;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
