@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,10 +42,26 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @PostMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @Deprecated
+    public ResponseEntity<?> addOrderWithID(@PathVariable String id){
+//        UUID uuid = UUID.fromString(id);
+//        Order order = new Order();
+//        UserDetails userDetails =
+//                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        String username = userDetails.getUsername();
+//        UUID jwtID = userRepository.findByUsername(username).get().getId();
+//
+//        order.setUser(userRepository.findById(jwtID).get());
+//        order.setId(uuid);
+
+        return new ResponseEntity<>(HttpStatus.GONE);
+    }
+
     @PostMapping()
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<?> addOrder(){
-
         Order order = new Order();
 
         UserDetails userDetails =
@@ -56,7 +73,7 @@ public class OrderController {
 
         orderRepository.save(order);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return ResponseEntity.ok(order);
     }
 
     @GetMapping("/user")
@@ -101,7 +118,6 @@ public class OrderController {
         Order order = orderRepository.getById(uuid);
 
         if (!orderService.orderExists(order)){
-            //TODO auto make a new order upon submitting lines if it doesnt exist yet
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
@@ -112,5 +128,13 @@ public class OrderController {
         orderLineRepository.saveAll(orderlines);
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/lines")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public ResponseEntity<?> getOrderLines(@PathVariable String id){
+        UUID uuid = UUID.fromString(id);
+
+        return ResponseEntity.ok(orderLineRepository.getOrderLinesByOrderId(uuid));
     }
 }

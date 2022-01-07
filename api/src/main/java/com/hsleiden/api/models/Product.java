@@ -25,6 +25,8 @@ public class Product {
     @Column(nullable = false)
     private int priceInCents;
 
+    private String image;
+
     public UUID getId() {
         return id;
     }
@@ -47,5 +49,13 @@ public class Product {
 
     public void setPriceInCents(int costInCents) {
         this.priceInCents = costInCents;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
