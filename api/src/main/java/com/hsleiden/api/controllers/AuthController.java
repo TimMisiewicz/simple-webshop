@@ -5,6 +5,7 @@ import com.hsleiden.api.models.Role;
 import com.hsleiden.api.models.User;
 import com.hsleiden.api.payloads.JwtResponse;
 import com.hsleiden.api.payloads.LoginRequest;
+import com.hsleiden.api.payloads.MessageResponse;
 import com.hsleiden.api.payloads.SignupRequest;
 import com.hsleiden.api.repository.RoleRepository;
 import com.hsleiden.api.repository.UserRepository;
@@ -68,25 +69,25 @@ public class AuthController {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body("Error: Username is already taken!");
+                    .body(new MessageResponse("Error: Username is already taken!"));
         }
 
         if (signUpRequest.getUsername() == null){
             return ResponseEntity
                     .badRequest()
-                    .body("Error: You need to enter a username!");
+                    .body(new MessageResponse("Error: You need to enter a username!"));
         }
 
         if (signUpRequest.getPassword() == null){
             return ResponseEntity
                     .badRequest()
-                    .body("Error: You need to enter a password!");
+                    .body(new MessageResponse("Error: You need to enter a password!"));
         }
 
         if (signUpRequest.getUsername().length() < 1 || signUpRequest.getPassword().length() < 1){
             return ResponseEntity
                     .badRequest()
-                    .body("Error: Password and/or Username too short!");
+                    .body(new MessageResponse("Error: Password and/or Username too short!"));
         }
 
         User user = new User(signUpRequest.getUsername(),
@@ -119,6 +120,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok("User registered successfully!");
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }
