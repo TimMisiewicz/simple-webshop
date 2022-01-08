@@ -71,6 +71,24 @@ public class AuthController {
                     .body("Error: Username is already taken!");
         }
 
+        if (signUpRequest.getUsername() == null){
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: You need to enter a username!");
+        }
+
+        if (signUpRequest.getPassword() == null){
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: You need to enter a password!");
+        }
+
+        if (signUpRequest.getUsername().length() < 1 || signUpRequest.getPassword().length() < 1){
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: Password and/or Username too short!");
+        }
+
         User user = new User(signUpRequest.getUsername(),
                 encoder.encode(signUpRequest.getPassword()));
 
