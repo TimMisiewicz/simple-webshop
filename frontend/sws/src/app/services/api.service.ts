@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ApiToken} from "../models/api-token.model";
+import {Product} from "../models/product.model";
+import {map} from "rxjs";
+import {OrderLine} from "../models/order-line.model";
+import {Order} from "../models/order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +12,15 @@ import {ApiToken} from "../models/api-token.model";
 export class ApiService {
 
   private urlBase: string = "http://localhost:8080/sws/api/";
-  private apiToken: ApiToken;
+  public apiToken: ApiToken;
 
   constructor(private http: HttpClient) { }
+
+  getRequestHeader() : HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + this.apiToken.accessToken
+    })
+  }
 
   login(userData: {username: string, password: string}): Promise<Boolean>{
     return new Promise<boolean>((res, rej) => {
@@ -41,5 +51,38 @@ export class ApiService {
           }
         })
     });
+  }
+
+  getAllProducts(){
+    return this.http.get<Product[]>(this.urlBase + "product/all", {headers: this.getRequestHeader()})
+      .pipe(map((response: Product[]) => {
+        return response;
+      }))
+  }
+
+  submitOrder(cart: OrderLine[]): Promise<boolean>{
+    return new Promise<boolean>(((resolve, reject) => {
+      this.http.post<Order>(this.urlBase + "order", {}, {headers: this.getRequestHeader()})
+        .subscribe(
+          {next: value => {
+
+            for (let orderLine of cart) {
+              orderLine.orderId = value.id;
+              console.log(orderLine)
+            }
+            // this.http.post(this.urlBase + "order/" + value.id + "/lines", cart, {headers: this.getRequestHeader()})
+            //   .subscribe({
+            //     next: () => {
+            //       resolve(true);
+            //     }, error: (err) => {
+            //       reject(err);
+            //     }
+            //   })
+            },
+          error: (err) => {
+            reject(err);
+          }}
+        )
+    }))
   }
 }

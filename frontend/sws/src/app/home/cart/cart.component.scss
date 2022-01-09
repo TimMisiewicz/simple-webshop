@@ -1,0 +1,48 @@
+.cart {
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 11.5px );
+  -webkit-backdrop-filter: blur( 11.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  font-weight: lighter;
+
+  h2 {
+    text-align: center;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .orderButton {
+    height: 50px;
+    background: rgba(0, 255, 12, 0.4);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: white;
+    font-size: 150%;
+    margin: 5px 5px;
+  }
+
+  .centerMe {
+    display: flex;
+    justify-content: center;
+  }
+
+  .clearButton {
+    height: 50px;
+    background: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: white;
+    margin: 5px 5px;
+  }
+}

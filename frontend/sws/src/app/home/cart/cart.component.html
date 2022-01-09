@@ -1,0 +1,22 @@
+<div class="cart">
+  <h2>
+    Cart
+  </h2>
+  <ul>
+    <li *ngIf="cart.length === 0" class="centerMe">
+      <p>Cart is empty.</p>
+    </li>
+    <li>
+      <app-order-line *ngFor="let orderLine of cart" [line]="orderLine" ></app-order-line>
+    </li>
+    <li *ngIf="cart.length != 0" class="centerMe">
+      <p>Subtotal: &euro;{{ getTotalCartPrice() }}</p>
+    </li>
+    <li *ngIf="cart.length != 0" class="centerMe">
+      <button class="orderButton" (click)="submitCart()">Order</button>
+    </li>
+    <li *ngIf="cart.length != 0" class="centerMe">
+      <button class="clearButton" (click)="emptyCart()">Empty cart</button>
+    </li>
+  </ul>
+</div>

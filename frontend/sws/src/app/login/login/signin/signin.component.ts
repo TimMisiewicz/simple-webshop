@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../../services/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signin',
@@ -10,7 +11,8 @@ export class SigninComponent implements OnInit {
 
   message: String;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +26,7 @@ export class SigninComponent implements OnInit {
     let loginStatus = this.api.login({username,password})
 
     loginStatus.then((token) => {
-      //TODO redirect
-      console.log("YEEES");
+      this.router.navigate(["/home"])
     }).catch(reason => {
       alert("Username and/or password are incorrect!");
     })
