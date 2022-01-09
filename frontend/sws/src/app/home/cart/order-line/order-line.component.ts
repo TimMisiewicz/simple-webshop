@@ -17,15 +17,15 @@ export class OrderLineComponent implements OnInit {
               private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.productName = this.productService.searchByID(this.orderLine.productId).name;
+    this.productName = this.productService.searchByID(this.orderLine.product).name;
   }
 
   increment(){
-    this.cartService.incrementAmountByID(this.orderLine.productId);
+    this.cartService.incrementAmountByID(this.orderLine.product);
   }
 
   decrement(){
-    this.cartService.decrementAmountByID(this.orderLine.productId);
+    this.cartService.decrementAmountByID(this.orderLine.product);
   }
 
 }

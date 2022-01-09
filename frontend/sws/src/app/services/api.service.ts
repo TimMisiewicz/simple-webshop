@@ -65,19 +65,20 @@ export class ApiService {
       this.http.post<Order>(this.urlBase + "order", {}, {headers: this.getRequestHeader()})
         .subscribe(
           {next: value => {
-
             for (let orderLine of cart) {
-              orderLine.orderId = value.id;
-              console.log(orderLine)
+              orderLine.order = value.id;
             }
-            // this.http.post(this.urlBase + "order/" + value.id + "/lines", cart, {headers: this.getRequestHeader()})
-            //   .subscribe({
-            //     next: () => {
-            //       resolve(true);
-            //     }, error: (err) => {
-            //       reject(err);
-            //     }
-            //   })
+            this.http.post(this.urlBase + "order/" + value.id + "/lines",
+              cart,
+              {headers: this.getRequestHeader()})
+              .subscribe({
+                next: () => {
+                  resolve(true);
+                }, error: (err) => {
+                  reject(err);
+                }
+              })
+              resolve(true);
             },
           error: (err) => {
             reject(err);

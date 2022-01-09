@@ -1,6 +1,6 @@
 export class OrderLine {
   id: string;
-  productId: string;
-  orderId: string;
+  product: string;
+  order: string;
   amount: number;
 }

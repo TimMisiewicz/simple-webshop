@@ -36,7 +36,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
     for (let orderLine of this.cart){
       cost = cost +
-        this.productService.searchByID(orderLine.productId).priceInCents *  orderLine.amount;
+        this.productService.searchByID(orderLine.product).priceInCents *  orderLine.amount;
     }
 
     return cost / 100;
@@ -54,9 +54,11 @@ export class CartComponent implements OnInit, OnDestroy {
       return;
     }
     this.apiClient.submitOrder(this.cart).then(() => {
-      alert("order created")
+      alert("Order has been successfully created!\n" +
+        "Your cart has been automatically emptied")
+      this.cartService.emptyCart();
     }).catch(() => {
-      alert("error")
+      alert("An order could not be created, please try again later")
     })
   }
 }

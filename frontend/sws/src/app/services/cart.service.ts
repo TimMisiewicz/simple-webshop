@@ -15,7 +15,7 @@ export class CartService {
 
   addProduct(product: Product){
     let orderLine: OrderLine = new OrderLine();
-    orderLine.productId = product.id;
+    orderLine.product = product.id;
     orderLine.amount = 1;
 
     if (this.isAlreadyInCart(product)){
@@ -28,7 +28,7 @@ export class CartService {
 
   isAlreadyInCart(product: Product): boolean {
     for (let orderline of this.cart) {
-      if (product.id == orderline.productId){
+      if (product.id == orderline.product){
         return true;
       }
     }
@@ -37,7 +37,7 @@ export class CartService {
 
   incrementAmountByID(id: string) {
     for (let i = 0; i < this.cart.length; i++){
-      if (this.cart[i].productId === id){
+      if (this.cart[i].product === id){
         this.cart[i].amount++;
       }
     }
@@ -45,7 +45,7 @@ export class CartService {
 
   decrementAmountByID(id: string){
     for (let i = 0; i < this.cart.length; i++){
-      if (this.cart[i].productId === id){
+      if (this.cart[i].product === id){
         if (this.cart[i].amount === 1){
           return;
         }
