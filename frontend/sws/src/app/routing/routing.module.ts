@@ -3,12 +3,14 @@ import {LoginComponent} from "../login/login/login.component";
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "../home/home.component";
 import {UserAuthGuard} from "../guards/user-auth-guard";
+import {AdminComponent} from "../admin/admin.component";
+import {AdminAuthGuard} from "../guards/admin-auth.guard";
 
 const ROUTES: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [UserAuthGuard] },
-
+  {path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard]},
 
   {path: "**", redirectTo: 'login'}
 ]

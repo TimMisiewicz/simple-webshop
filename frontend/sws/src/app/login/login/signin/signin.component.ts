@@ -26,7 +26,11 @@ export class SigninComponent implements OnInit {
     let loginStatus = this.api.login({username,password})
 
     loginStatus.then((token) => {
-      this.router.navigate(["/home"])
+      if (this.api.apiToken.roles[0] == 'ADMIN'){
+        this.router.navigate(["/admin"])
+      } else if (token) {
+        this.router.navigate(["/home"])
+      }
     }).catch(reason => {
       alert("Username and/or password are incorrect!");
     })

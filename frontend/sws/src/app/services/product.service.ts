@@ -12,7 +12,6 @@ export class ProductService {
   constructor(private apiService: ApiService) {
     this.apiService.getAllProducts().subscribe(data => {
       this.products = data;
-      console.log(this.products);
     })
   }
 
