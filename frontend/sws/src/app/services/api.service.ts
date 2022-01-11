@@ -101,6 +101,10 @@ export class ApiService {
       .pipe(map((response: UserOrderLine[]) => {
         // Due to an anomaly in the return value of this endpoint, the response is first cast to a separate object,
         // so it can be parsed correctly, then converted back to the normal orderLine objects
+        //
+        // On POST, orderline attributes have to be called 'order' and 'product', however, on a GET request,
+        // these attributes are somehow named 'orderId' and 'productId', resulting in them not being able to be parsed
+        // correctly, this was the quickest fix.
         let orderLines: OrderLine[] = [];
 
         for (let userOrderLine of response){
