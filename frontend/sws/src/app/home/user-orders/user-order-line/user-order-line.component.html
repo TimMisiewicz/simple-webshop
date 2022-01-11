@@ -1,0 +1,16 @@
+<table>
+  <tr *ngIf="index != null">
+    <th class="index">{{ index + 1 }}</th>
+  </tr>
+  <tr  style="width: 50%" *ngIf="orderLines.length === 0">
+    <td>This order has no products!</td>
+  </tr>
+  <tr *ngIf="orderLines.length > 0">
+    <th>Product</th>
+    <th>Amount</th>
+  </tr>
+  <tr *ngFor="let orderLine of orderLines">
+    <td style="width: 50%">{{ getProductName(orderLine) }}</td>
+    <td style="width: 50%">x{{ orderLine.amount }}</td>
+  </tr>
+</table>

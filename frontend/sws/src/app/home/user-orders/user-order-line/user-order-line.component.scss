@@ -1,0 +1,13 @@
+table {
+  border: solid rgba(255, 255, 255, 0.22) 1px;
+  border-collapse: collapse;
+  width: 100%;
+
+  th.index {
+    text-align: center;
+  }
+
+  th, td {
+    border: solid rgba(255, 255, 255, 0.22) 1px;
+  }
+}

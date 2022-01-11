@@ -6,6 +6,9 @@ import { CartComponent } from './cart/cart.component';
 import {ApiService} from "../services/api.service";
 import { HomeComponent } from './home.component';
 import { OrderLineComponent } from './cart/order-line/order-line.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import {UserOrderLineComponent} from "./user-orders/user-order-line/user-order-line.component";
+
 
 
 
@@ -15,7 +18,9 @@ import { OrderLineComponent } from './cart/order-line/order-line.component';
     ProductItemComponent,
     CartComponent,
     HomeComponent,
-    OrderLineComponent
+    OrderLineComponent,
+    UserOrdersComponent,
+    UserOrderLineComponent
   ],
   imports: [
     CommonModule
@@ -24,7 +29,8 @@ import { OrderLineComponent } from './cart/order-line/order-line.component';
     CartComponent,
     ProductListComponent,
     ProductItemComponent,
-    HomeComponent
+    HomeComponent,
+    UserOrderLineComponent
   ],
   providers:[
     ApiService

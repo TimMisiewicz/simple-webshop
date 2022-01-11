@@ -2,7 +2,10 @@ main {
   background-image: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
   background-repeat: repeat;
   background-size: cover;
-  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+
+  height: 100%;
 
   color: white;
   h1 {
@@ -27,5 +30,8 @@ main {
     padding: 5px;
   }
 
-
+  .userOrders {
+    width: 97.5%;
+    margin: 0 auto;
+  }
 }

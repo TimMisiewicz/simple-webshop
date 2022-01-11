@@ -1,0 +1,10 @@
+<div class="userOrdersContainer">
+  <h2>My orders</h2>
+
+  <table *ngIf="orders.length === 0">
+    <tr>
+      <td>You have no orders</td>
+    </tr>
+  </table>
+  <app-user-order-line *ngFor="let order of orders; let i = index" [order]="order" [index]="i"></app-user-order-line>
+</div>

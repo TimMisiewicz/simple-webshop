@@ -3,6 +3,8 @@ import {ProductService} from "../../services/product.service";
 import {CartService} from "../../services/cart.service";
 import {OrderLine} from "../../models/order-line.model";
 import {ApiService} from "../../services/api.service";
+import {OrderService} from "../../services/order.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +23,8 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService,
               private cartService: CartService,
+              private orderService: OrderService,
+              private router: Router,
               private apiClient: ApiService) { }
 
   ngOnInit(): void {
@@ -57,6 +61,7 @@ export class CartComponent implements OnInit, OnDestroy {
       alert("Order has been successfully created!\n" +
         "Your cart has been automatically emptied")
       this.cartService.emptyCart();
+      this.orderService.refresh();
     }).catch(() => {
       alert("An order could not be created, please try again later")
     })
