@@ -1,0 +1,44 @@
+main {
+  background: rgb(122,122,122);
+  background: linear-gradient(344deg, rgba(122,122,122,1) 0%, rgba(29,29,29,1) 100%);
+  background-size: cover;
+  flex-wrap: wrap;
+  height: 100vh;
+  color: white;
+
+  .adminFlexContainer {
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 350%;
+    padding: 30px;
+    font-weight: lighter;
+  }
+
+  .left {
+    width: 48%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 90vh;
+  }
+
+  .right {
+    width: 48%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 90vh;
+  }
+
+  app-admin-product-list, app-admin-add-product, app-admin-edit-product {
+    height: 100%;
+  }
+
+  app-admin-add-product, app-admin-edit-product {
+    height: 50%;
+  }
+
+
+}

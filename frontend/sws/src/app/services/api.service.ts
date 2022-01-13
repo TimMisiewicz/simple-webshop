@@ -121,4 +121,30 @@ export class ApiService {
         return orderLines;
       }))
   }
+
+  addNewProduct(product: Product){
+    return new Promise<any>(((resolve, reject) => {
+      this.http.post(this.urlBase + "product", product, {headers: this.getRequestHeader()})
+        .subscribe({
+          next: () => {
+            resolve(true);
+          }, error: (reason) => {
+            reject(reason);
+          }
+        })
+    }))
+  }
+
+  editProduct(product: Product){
+    return new Promise<any>(((resolve, reject) => {
+      this.http.put(this.urlBase + "product/edit", product, {headers: this.getRequestHeader()})
+        .subscribe({
+          next: () => {
+            resolve(true);
+          }, error: (reason) => {
+            reject(reason);
+          }
+        })
+    }))
+  }
 }

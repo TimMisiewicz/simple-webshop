@@ -1,0 +1,17 @@
+<div class="APAContainer">
+  <h2>Add Product</h2>
+  <form>
+    <label for="pname">Name</label>
+    <input #name id="pname" type="text" placeholder="Name">
+    <label for="pprice">Price</label>
+    <input #price id="pprice" type="number" placeholder="Price in cents">
+    <label for="pimage">Image</label>
+    <input #image id="pimage" type="text" placeholder="Image URL">
+  </form>
+  <div class="btnCenter">
+    <button (click)="addProduct(name.value, +price.value, image.value);
+                     name.value = '';
+                     image.value = '';">Submit
+    </button>
+  </div>
+</div>
