@@ -90,8 +90,7 @@ public class OrderController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    //    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> getAllOrders(){
         return ResponseEntity.ok(orderRepository.findAll());
     }

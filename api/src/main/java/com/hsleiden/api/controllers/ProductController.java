@@ -26,8 +26,7 @@ public class ProductController {
     }
 
     @PostMapping()
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-//    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> addNewProduct(@RequestBody Product product){
         if (!productService.isValidProduct(product)){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -39,8 +38,7 @@ public class ProductController {
     }
 
     @PutMapping("/edit")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    //    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<?> editProduct(@RequestBody Product product){
         if (!productService.productExists(product)){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
