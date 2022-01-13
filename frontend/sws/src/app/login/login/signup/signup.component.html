@@ -1,0 +1,14 @@
+<div class="card">
+  <p>Need an account? Register here</p>
+  <!-- Inputs split into two forms to prevent CSS issue -->
+  <form>
+    <input type="text" class="username" placeholder="Username (case sensitive)" #username>
+  </form>
+  <form>
+    <input type="password" class="password" placeholder="Password" #password>
+  </form>
+  <form>
+    <input type="password" class="password" placeholder="Confirm password" #passwordConfirm>
+  </form>
+  <button (click)="onSignup(username.value, password.value, passwordConfirm.value)">Register</button>
+</div>

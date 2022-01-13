@@ -1,0 +1,20 @@
+<div class="APEContainer">
+  <h2>Edit Product</h2>
+  <form *ngIf="editMode">
+    <label for="pname">Name</label>
+    <input id="pname" type="text" placeholder="Name" [(ngModel)]="selectedProduct.name"
+           [ngModelOptions]="{standalone: true}">
+    <label for="pprice">Price</label>
+    <input id="pprice" type="number" placeholder="Price in cents" [(ngModel)]="selectedProduct.priceInCents"
+           [ngModelOptions]="{standalone: true}">
+    <label for="pimage">Image</label>
+    <input id="pimage" type="text" placeholder="Image URL" [(ngModel)]="selectedProduct.image"
+           [ngModelOptions]="{standalone: true}">
+  </form>
+  <div class="btnCenter">
+    <button *ngIf="editMode"
+    (click)="editProduct()"
+    >Submit
+    </button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="APLContainer">
+  <h2>Products</h2>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Product</th>
+      <th>Price</th>
+    </tr>
+    <tr *ngFor="let product of products; let i = index">
+      <td>{{ i + 1}}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.priceInCents / 100 }}</td>
+      <td style="display: flex; justify-content: center; flex-wrap: wrap">
+        <button (click)="openImage(product.image)">Image</button>
+        <button (click)="editProduct(product)">Edit</button></td>
+    </tr>
+  </table>
+</div>

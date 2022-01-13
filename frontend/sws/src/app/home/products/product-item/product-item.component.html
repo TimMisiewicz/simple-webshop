@@ -1,0 +1,14 @@
+<div class="product">
+  <div class="productcard">
+    <h2>{{ product.name }}</h2>
+    <div class="center">
+      <p>&euro;{{+product.priceInCents/100}}</p>
+    </div>
+    <div class="center">
+      <img [src]="product.image" alt="Image">
+    </div>
+    <div class="center">
+      <button (click)="addProductToCart(product)" >Add to cart</button>
+    </div>
+  </div>
+</div>

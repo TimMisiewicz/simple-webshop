@@ -1,0 +1,26 @@
+.userOrdersContainer {
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 11.5px );
+  -webkit-backdrop-filter: blur( 11.5px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  font-weight: lighter;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  h2 {
+    text-align: center;
+    width: 100%;
+  }
+
+  table, app-user-order-line {
+    width: 51%;
+    margin-bottom: 30px;
+  }
+  table {
+    text-align: center;
+  }
+}
