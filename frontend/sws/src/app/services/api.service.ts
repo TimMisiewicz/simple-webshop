@@ -12,7 +12,7 @@ import {UserOrderLine} from "../models/user-order-line.model";
 })
 export class ApiService {
 
-  private urlBase: string = "http://localhost:8080/sws/api/";
+  private urlBase: string = "https://warm-refuge-51172.herokuapp.com/sws/api/";
   public apiToken: ApiToken;
 
   constructor(private http: HttpClient) { }
