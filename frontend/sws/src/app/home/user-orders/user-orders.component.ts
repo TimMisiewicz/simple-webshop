@@ -11,7 +11,6 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
 
   private orderObserver = {
     next: data => {
-      console.log("observer")
       this.orders = data;
     }
   }
