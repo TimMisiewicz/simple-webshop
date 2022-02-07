@@ -20,7 +20,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+//     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public ResponseEntity<?> getAllProducts(){
         return ResponseEntity.ok(productRepository.findAll());
     }

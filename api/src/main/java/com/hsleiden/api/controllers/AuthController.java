@@ -84,7 +84,7 @@ public class AuthController {
                     .body(new MessageResponse("Error: You need to enter a password!"));
         }
 
-        if (signUpRequest.getUsername().length() < 1 || signUpRequest.getPassword().length() < 1){
+        if (signUpRequest.getUsername().length() < 7 || signUpRequest.getPassword().length() < 1){
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Password and/or Username too short!"));
