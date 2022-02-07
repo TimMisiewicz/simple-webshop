@@ -20,6 +20,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
   cartSubscription;
   public cart: OrderLine[] = [];
+  message: String;
+  isError: boolean = false;
 
   constructor(private productService: ProductService,
               private cartService: CartService,
@@ -56,12 +58,21 @@ export class CartComponent implements OnInit, OnDestroy {
       return;
     }
     this.apiClient.submitOrder(this.cart).then(() => {
-      alert("Order has been successfully created!\n" +
-        "Your cart has been automatically emptied")
+      this.message = "Your order was successfully created!";
+      this.isError = false;
       this.cartService.emptyCart();
       this.orderService.refresh();
     }).catch(() => {
-      alert("An order could not be created, please try again later")
+      this.message = "Your order could not be created!";
+      this.isError = true;
     })
+  }
+
+  messageIsEmpty(){
+    return this.message == null;
+  }
+
+  closeAlert() {
+    this.message = null;
   }
 }

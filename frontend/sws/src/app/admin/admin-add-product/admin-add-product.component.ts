@@ -10,6 +10,9 @@ import {ProductService} from "../../services/product.service";
 })
 export class AdminAddProductComponent implements OnInit {
 
+  message: String;
+  isError: boolean = false;
+
   constructor(private apiService: ApiService,
               private productService: ProductService) { }
 
@@ -18,7 +21,8 @@ export class AdminAddProductComponent implements OnInit {
 
   addProduct (name: string, price: number, image: string){
     if (name.length < 1 || price < 1 || image.length < 1){
-      alert("Please fill in the form correctly!");
+      this.message = "Please fill in the form correctly";
+      this.isError = true;
       return;
     }
     let product = new Product();
@@ -28,12 +32,20 @@ export class AdminAddProductComponent implements OnInit {
     product.priceInCents = price;
 
     this.apiService.addNewProduct(product).then(() => {
-      alert("Product successfully added!");
+      this.message = "Product successfully added";
+      this.isError = false;
       this.productService.getAllProductsFromApi();
     }).catch(() => {
-      alert("An error has occurred while adding the product!");
+      this.message = "An error occured while adding the new product";
+      this.isError = true;
       this.productService.getAllProductsFromApi();
     })
   }
+  messageIsEmpty(){
+    return this.message == null;
+  }
 
+  closeAlert() {
+    this.message = null;
+  }
 }

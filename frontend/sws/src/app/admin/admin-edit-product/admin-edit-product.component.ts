@@ -15,6 +15,9 @@ export class AdminEditProductComponent implements OnInit {
   selectedProduct: Product;
   editMode: boolean = false;
 
+  message: String;
+  isError: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private productService: ProductService,
               private apiService: ApiService) { }
@@ -46,14 +49,24 @@ export class AdminEditProductComponent implements OnInit {
 
   editProduct() {
     this.apiService.editProduct(this.selectedProduct).then(() => {
-      alert("Product successfully edited");
+      this.message = "Product successfully edited!";
+      this.isError = false;
       this.productService.getAllProductsFromApi();
       this.selectedProduct = new Product();
       this.id = '';
       this.editMode = false;
     }).catch(() => {
-      alert("Error: Could not edit product");
+      this.message = "Product could not be edited!";
+      this.isError = true;
       this.productService.getAllProductsFromApi();
     })
+  }
+
+  messageIsEmpty(){
+    return this.message == null;
+  }
+
+  closeAlert() {
+    this.message = null;
   }
 }

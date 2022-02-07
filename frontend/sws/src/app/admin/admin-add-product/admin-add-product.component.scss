@@ -62,5 +62,19 @@
     display: flex;
     justify-content: center;
   }
+  .signUpAlert{
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
 
+    .wide {
+      width: 95%;
+    }
+    .closeAlert {
+      cursor: pointer;
+      text-align: right;
+      margin-left: auto;
+      width: 5%;
+    }
+  }
 }

@@ -4,6 +4,14 @@
     <input type="text" class="username" placeholder="Username (case sensitive)" #username>
     <input type="password" class="password" placeholder="Password" #password>
   </form>
+  <div class="alert signUpAlert"
+       *ngIf="!messageIsEmpty()"
+       [ngClass]="isError ? 'alert-danger' : 'alert-success'">
+    <div class="fiftyper">{{ message }}</div>
+    <div class="closeAlert" (click)="closeAlert()">
+      x
+    </div>
+  </div>
   <div class="centerBtn">
     <button (click)="onLogin(username.value, password.value)">Sign In</button>
   </div>

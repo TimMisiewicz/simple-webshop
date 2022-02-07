@@ -17,4 +17,12 @@
     >Submit
     </button>
   </div>
+  <div class="alert signUpAlert"
+       *ngIf="!messageIsEmpty()"
+       [ngClass]="isError ? 'alert-danger' : 'alert-success'">
+    <div class="fiftyper">{{ message }}</div>
+    <div class="closeAlert" (click)="closeAlert()">
+      x
+    </div>
+  </div>
 </div>

@@ -9,26 +9,31 @@ import {Message} from "../../../models/message.model";
 })
 export class SignupComponent implements OnInit {
 
-  private message: Message;
+  public message: Message;
+  isError: boolean = false;
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.message = new Message();
   }
 
   onSignup(username: string, password: string, passwordConfirm: string) {
     if (password != passwordConfirm){
-      alert("The passwords entered are not the same!");
+      this.message.message = "The passwords entered are not the same!";
+      this.isError = true;
       return;
     }
 
-    if (password.length < 7){
-      alert("You need to enter a password!");
+    if (password.length < 8){
+      this.message.message = "Password is too short!";
+      this.isError = true;
       return;
     }
 
-    if (username.length < 7){
-      alert("You need to enter a username!");
+    if (username.length < 8){
+      this.message.message = "You need to enter a username!";
+      this.isError = true;
       return;
     }
 
@@ -36,10 +41,18 @@ export class SignupComponent implements OnInit {
 
     message.then((response) => {
       this.message = response;
-      alert(this.message.message)
+      this.isError = false;
     }).catch((error) => {
+      this.isError = true;
       this.message = error;
-      alert(this.message.message)
     })
+  }
+
+  messageIsEmpty(){
+    return this.message.message == null;
+  }
+
+  closeAlert() {
+    this.message.message = null;
   }
 }

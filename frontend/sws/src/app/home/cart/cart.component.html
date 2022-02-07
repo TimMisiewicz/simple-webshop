@@ -18,5 +18,15 @@
     <li *ngIf="cart.length != 0" class="centerMe">
       <button class="clearButton" (click)="emptyCart()">Empty cart</button>
     </li>
+    <li>
+      <div class="alert signUpAlert"
+           *ngIf="!messageIsEmpty()"
+           [ngClass]="isError ? 'alert-danger' : 'alert-success'">
+        <div class="fiftyper">{{ message }}</div>
+        <div class="closeAlert" (click)="closeAlert()">
+          x
+        </div>
+      </div>
+    </li>
   </ul>
 </div>

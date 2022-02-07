@@ -6,6 +6,14 @@
     <input type="password" class="password" placeholder="Password" #password>
     <input type="password" class="password" placeholder="Confirm password" #passwordConfirm>
   </form>
+  <div class="alert signUpAlert"
+       *ngIf="!messageIsEmpty()"
+        [ngClass]="isError ? 'alert-danger' : 'alert-success'">
+    <div class="fiftyper">{{ message.message }}</div>
+    <div class="closeAlert" (click)="closeAlert()">
+      x
+    </div>
+  </div>
   <div class="centerB">
     <button (click)="onSignup(username.value, password.value, passwordConfirm.value)">Register</button>
   </div>

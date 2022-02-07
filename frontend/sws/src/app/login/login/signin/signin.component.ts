@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class SigninComponent implements OnInit {
 
   message: String;
+  isError: boolean = false;
 
   constructor(private api: ApiService,
               private router: Router) { }
@@ -19,7 +20,8 @@ export class SigninComponent implements OnInit {
 
   onLogin(username: string, password: string) {
     if (username.length < 1 || password.length < 1){
-      alert("Please enter a username and password!");
+      this.message = "Please enter a username and password!";
+      this.isError = true;
       return;
     }
 
@@ -31,8 +33,17 @@ export class SigninComponent implements OnInit {
       } else if (token) {
         this.router.navigate(["/home"])
       }
-    }).catch(reason => {
-      alert("Username and/or password are incorrect!");
+    }).catch(() => {
+      this.message = "Username and/or Password are incorrect!";
+      this.isError = true;
     })
+  }
+
+  messageIsEmpty(){
+    return this.message == null;
+  }
+
+  closeAlert() {
+    this.message = null;
   }
 }
