@@ -22,12 +22,12 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    if (password.length < 1){
+    if (password.length < 7){
       alert("You need to enter a password!");
       return;
     }
 
-    if (username.length < 1){
+    if (username.length < 7){
       alert("You need to enter a username!");
       return;
     }

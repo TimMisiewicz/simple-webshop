@@ -16,6 +16,10 @@ export class OrderService {
   }
 
   refresh(){
+    if (!this.apiService.isLoggedIn()){
+      return;
+    }
+
     this.apiService.getAllUserOrders().subscribe(data => {
       this.userOrders.length = 0;
       for (let order of data) {

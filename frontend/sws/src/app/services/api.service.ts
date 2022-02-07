@@ -17,6 +17,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  isLoggedIn(): boolean{
+    return this.apiToken != null;
+  }
+
   getRequestHeader() : HttpHeaders {
     return new HttpHeaders({
       'Authorization': 'Bearer ' + this.apiToken.accessToken
@@ -55,7 +59,7 @@ export class ApiService {
   }
 
   getAllProducts(){
-    return this.http.get<Product[]>(this.urlBase + "product/all", {headers: this.getRequestHeader()})
+    return this.http.get<Product[]>(this.urlBase + "product/all")
       .pipe(map((response: Product[]) => {
         return response;
       }))

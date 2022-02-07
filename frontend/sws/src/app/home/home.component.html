@@ -5,10 +5,15 @@
       <app-product-list></app-product-list>
     </div>
     <div class="cart">
+      <div class="nav">
+        <button class="navbtn" (click)="navigateToLogin()" *ngIf="!isLoggedIn()" >Log In - Register</button>
+        <button class="navbtn" (click)="navigateToLogin()" *ngIf="isLoggedIn()" >Log out</button>
+        <button class="navbtn" (click)="navigateToOrders()">My Orders</button>
+      </div>
       <app-cart></app-cart>
     </div>
   </div>
-  <div class="userOrders">
-    <app-user-orders></app-user-orders>
-  </div>
+<!--  <div class="userOrders">-->
+<!--    <app-user-orders></app-user-orders>-->
+<!--  </div>-->
 </main>

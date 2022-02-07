@@ -1,15 +1,50 @@
+.bgContainer{
+  background-image: radial-gradient( circle farthest-corner at 83.7% 4.3%,  rgba(173,0,171,1) 0%, rgba(15,51,92,1) 90% );
+  background-repeat: repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  height: auto;
+  color: white;
+  h1 {
+    font-size: 350%;
+    padding: 30px;
+    font-weight: lighter;
+    width: 51%;
+    text-align: left;
+    height: 10%;
+  }
+}
+
 .userOrdersContainer {
-  background: rgba( 255, 255, 255, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 11.5px );
-  -webkit-backdrop-filter: blur( 11.5px );
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
   font-weight: lighter;
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+
+  .navButton{
+    width: 51%;
+    padding-bottom: 5px;
+    height: 50px;background: rgba( 0, 171, 240, 0.4 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: white;
+    font-size: 150%;
+    margin: 20px auto 20px;
+  }
 
   h2 {
     text-align: center;
@@ -20,7 +55,9 @@
     width: 51%;
     margin-bottom: 30px;
   }
+
   table {
     text-align: center;
+    border-spacing: 5px;
   }
 }

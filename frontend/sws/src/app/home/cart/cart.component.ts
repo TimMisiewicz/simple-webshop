@@ -47,14 +47,12 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   emptyCart(){
-    if (!confirm("Are you sure you want to empty your cart?")){
-      return;
-    }
     this.cartService.emptyCart();
   }
 
   submitCart() {
-    if (!confirm("Are you sure you want to order this cart?")){
+    if (!this.apiClient.isLoggedIn()){
+      this.router.navigate(["/login"]);
       return;
     }
     this.apiClient.submitOrder(this.cart).then(() => {

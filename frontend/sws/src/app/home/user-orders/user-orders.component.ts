@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from "../../services/order.service";
 import {Order} from "../../models/order.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-orders',
@@ -17,7 +18,8 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
   private orderSubscription;
   public orders: Order[] = [];
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.orderSubscription = this.orderService.orderObservable.subscribe(this.orderObserver);
@@ -29,6 +31,11 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
 
   refresh(){
     this.orderService.refresh()
+  }
+
+  navigateToStore(){
+    this.router.navigate(["/home"]);
+    return;
   }
 
 }
