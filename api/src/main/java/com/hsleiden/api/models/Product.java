@@ -27,6 +27,9 @@ public class Product {
 
     private String image;
 
+    @Column(columnDefinition="TEXT")
+    private String description;
+
     public UUID getId() {
         return id;
     }
@@ -57,5 +60,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
